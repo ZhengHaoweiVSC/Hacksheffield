@@ -14,6 +14,7 @@ public class PirateScript : MonoBehaviour
 
     public void Update()
     {
+        // Every x seconds, spawn a pirate ship nearby, maybe with some variance
 
     }
 
