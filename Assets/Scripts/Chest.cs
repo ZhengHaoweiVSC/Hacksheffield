@@ -1,4 +1,6 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Chest : MonoBehaviour
 {
@@ -8,12 +10,20 @@ public class Chest : MonoBehaviour
     private float timeToLive;
     private bool isCollected;
 
+    public Sprite closedChestSprite;
+    public Sprite openedChestSprite;
+
+    private SpriteRenderer spriteRenderer;
+
     void Start()
     {
+        spriteRenderer = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         chestScript = GameObject.FindGameObjectWithTag("ChestScript").GetComponent<ChestScript>();
         goldAmount = Random.Range(1, 10);
-        timeToLive = Time.time + 120.0f;
+        timeToLive = Time.time + 20.0f;
         isCollected = false;
+
+        spriteRenderer.sprite = closedChestSprite;
     }
 
     public Vector2 GetChestPosition()
@@ -32,6 +42,9 @@ public class Chest : MonoBehaviour
     public void CollectChest()
     {
         isCollected = true;
+        
+        spriteRenderer.sprite = openedChestSprite;
+        chestScript.UpdateGold(goldAmount);
     }
 
     public float GetDistanceToPlayer()
@@ -47,11 +60,11 @@ public class Chest : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if (GetDistanceToPlayer() < 1 && !isCollected)
+        var keyboard = Keyboard.current;
+
+        if (GetDistanceToPlayer() < 2 && !isCollected && keyboard.tabKey.isPressed)
         {
             CollectChest();
-            isCollected = true;
-            chestScript.UpdateGold(goldAmount);
         }
     }
 }
