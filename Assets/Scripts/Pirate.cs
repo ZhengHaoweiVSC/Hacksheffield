@@ -15,13 +15,13 @@ public class Pirate
         return piratePosition;
     }
 
-    private Vector2 generateStartPosition()
-    {
-        Vector2 playerPosition = new Vector2();
+    //private Vector2 generateStartPosition()
+    //{
+    //    Vector2 playerPosition = new Vector2();
 
 
-        return new int[] { generatedX, generatedY };
-    }
+    //    return new int[] { generatedX, generatedY };
+    //}
 
 
 }

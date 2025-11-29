@@ -1,16 +1,9 @@
 using UnityEngine;
 
-public class SpawnNearPlayer : MonoBehaviour
+public class SpawnNearPlayer
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public static void spawnNearPlayer()
     {
         
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    }    
 }
