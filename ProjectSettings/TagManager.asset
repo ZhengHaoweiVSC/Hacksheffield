@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - PirateController
+  - ChestController
   layers:
   - Default
   - TransparentFX
