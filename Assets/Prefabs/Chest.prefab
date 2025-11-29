@@ -117,8 +117,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.0837116, y: -0.48516512, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 8202527052846955690}
   m_Father: {fileID: 0}
@@ -135,3 +135,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95f1c2e06149dc34b80c7a92d10e8d6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Chest
+  closedChestSprite: {fileID: -5281422124547630143, guid: 3ca1559393cd2d2469e890f49fb6aece, type: 3}
+  openedChestSprite: {fileID: -4316548305953991135, guid: f3a364f5f17cc584f8f874cc57ce1c0b, type: 3}
