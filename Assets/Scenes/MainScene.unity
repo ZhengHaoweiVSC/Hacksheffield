@@ -266,7 +266,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.18, y: 0.18, z: 0.18}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 261528495}
@@ -448,7 +448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dce0538cc84fc58429a1404aebd73846, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ChestScript
-  chestPrefab: {fileID: 5495981285838837697, guid: 09eb6c1674887c3409e49058951dc5ed, type: 3}
+  chestPrefab: {fileID: 8853099710171905660, guid: 09eb6c1674887c3409e49058951dc5ed, type: 3}
 --- !u!4 &915255225
 Transform:
   m_ObjectHideFlags: 0

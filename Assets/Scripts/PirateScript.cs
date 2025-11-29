@@ -11,7 +11,7 @@ public class PirateScript : MonoBehaviour
     public void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-        lastSpawnTime = Time.time;
+        lastSpawnTime = Time.time + 3f;
     }
 
     public void Update()
