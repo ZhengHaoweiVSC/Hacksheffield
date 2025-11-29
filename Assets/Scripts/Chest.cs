@@ -11,10 +11,6 @@ public class Chest : MonoBehaviour
     void Start()
     {
         chestScript = GameObject.FindGameObjectWithTag("ChestScript").GetComponent<ChestScript>();
-    }
-
-    public Chest()
-    {
         goldAmount = Random.Range(1, 10);
         timeToLive = Time.time + 120.0f;
         isCollected = false;

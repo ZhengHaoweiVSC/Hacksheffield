@@ -5,17 +5,23 @@ public class PirateScript : MonoBehaviour
 {
     GameObject playerObject;
     public GameObject piratePrefab;
+    public float spawnInterval = 5f;
+    private float lastSpawnTime;
 
     public void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
-
+        lastSpawnTime = Time.time;
     }
 
     public void Update()
     {
         // Every x seconds, spawn a pirate ship nearby, maybe with some variance
-
+        if (Time.time > lastSpawnTime + spawnInterval)
+        {
+            SpawnPirate();
+            lastSpawnTime = Time.time;
+        }
     }
 
     public void SpawnPirate()
