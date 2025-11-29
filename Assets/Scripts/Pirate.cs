@@ -1,27 +1,24 @@
 using System.CodeDom.Compiler;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Pirate : MonoBehaviour 
 {
     private Vector2 piratePosition;
-
-    public Pirate()
+    GameObject playerObject;
+    private void Start()
     {
-        
+        playerObject = GameObject.FindGameObjectWithTag("Player");
     }
 
-    public Vector2 GetPiratePosition()
+    private float getDistanceToPlayer()
     {
-        return piratePosition;
+        Vector2 playerPos = playerObject.transform.position;
+        Vector2 myPosition = transform.position;
+
+        float distance = Vector2.Distance(playerPos, myPosition);
+
+        return distance;
     }
-
-    //private Vector2 generateStartPosition()
-    //{
-    //    Vector2 playerPosition = new Vector2();
-
-
-    //    return new int[] { generatedX, generatedY };
-    //}
-
 
 }
