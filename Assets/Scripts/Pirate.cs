@@ -1,7 +1,7 @@
 using System.CodeDom.Compiler;
 using UnityEngine;
 
-public class Pirate
+public class Pirate : MonoBehaviour 
 {
     private Vector2 piratePosition;
 
