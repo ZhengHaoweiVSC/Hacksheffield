@@ -8,7 +8,9 @@ public class BoatShoot : MonoBehaviour
 
     [Header("Where Projectiles Come From")]
     public Transform leftShootPoint;
+    public Transform leftShootPoint2;   // NEW
     public Transform rightShootPoint;
+    public Transform rightShootPoint2;  // NEW
 
     [Header("Enemy Tags This Projectile Can Destroy")]
     public string[] destroyableEnemyTags;
@@ -27,48 +29,78 @@ public class BoatShoot : MonoBehaviour
     {
         if (Keyboard.current == null) return;
 
-        // Check cooldown
         if (Time.time < nextShootTime) return;
 
-        // Shoot left (Q)
+        // Left Side (Q)
         if (Keyboard.current.qKey.wasPressedThisFrame)
         {
-            ShootProjectile(leftShootPoint);
+            FireLeft();
             nextShootTime = Time.time + stats.cooldown;
         }
 
-        // Shoot right (E)
+        // Right Side (E)
         if (Keyboard.current.eKey.wasPressedThisFrame)
         {
-            ShootProjectile(rightShootPoint);
+            FireRight();
             nextShootTime = Time.time + stats.cooldown;
         }
     }
 
+    // -------------------------------------------------
+    // Fire LEFT side
+    // -------------------------------------------------
+    private void FireLeft()
+    {
+        ShootProjectile(leftShootPoint);
+
+        if (stats.hasDoubleShot)
+            ShootProjectile(leftShootPoint2);
+    }
+
+    // -------------------------------------------------
+    // Fire RIGHT side
+    // -------------------------------------------------
+    private void FireRight()
+    {
+        ShootProjectile(rightShootPoint);
+
+        if (stats.hasDoubleShot)
+            ShootProjectile(rightShootPoint2);
+    }
+
+    // -------------------------------------------------
+    // MAIN SHOOT FUNCTION
+    // -------------------------------------------------
     private void ShootProjectile(Transform shootPoint)
     {
-        if (projectilePrefabs.Length == 0) return;
+        if (projectilePrefabs.Length == 0 || shootPoint == null)
+            return;
 
-        // Random projectile type
-        int index = Random.Range(0, projectilePrefabs.Length);
+        int prefabIndex = Random.Range(0, projectilePrefabs.Length);
 
-        GameObject proj = Instantiate(projectilePrefabs[index],
-                                      shootPoint.position,
-                                      shootPoint.rotation);
+        GameObject proj = Instantiate(
+            projectilePrefabs[prefabIndex],
+            shootPoint.position,
+            shootPoint.rotation
+        );
 
-        // Apply Rigidbody velocity
+        // Scale upgrade
+        proj.transform.localScale *= stats.cannonSizeMultiplier;
+
+        // Velocity
         Rigidbody2D rb = proj.GetComponent<Rigidbody2D>();
         if (rb != null)
-        {
-            // Shoot using shootPoint.right (works with rotation)
             rb.linearVelocity = shootPoint.right * stats.projectileSpeed;
-        }
 
-        // Add projectile handler (destroy enemies)
+        // Hitbox scaling
+        CircleCollider2D col = proj.GetComponent<CircleCollider2D>();
+        if (col != null)
+            col.radius *= stats.cannonSizeMultiplier;
+
+        // Enemy handling
         ProjectileHandler handler = proj.AddComponent<ProjectileHandler>();
         handler.destroyableEnemyTags = destroyableEnemyTags;
 
-        // Destroy projectile after lifetime
         Destroy(proj, stats.projectileLifetime);
     }
 }

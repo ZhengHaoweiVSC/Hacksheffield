@@ -4,7 +4,7 @@ public class ChestScript : MonoBehaviour
 {
     private int playerGold;
     public GameObject chestPrefab;
-    private float spawnInterval = 8;
+    private float spawnInterval = 5;
     private float lastSpawnTime;
     private GameObject playerObject;
 
