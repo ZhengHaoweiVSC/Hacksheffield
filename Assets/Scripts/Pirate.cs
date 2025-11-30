@@ -23,7 +23,7 @@ public class Pirate : MonoBehaviour
 
         if (distanceToPlayer > 2.5f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 0.8f*Time.deltaTime*(1 + (Time.time)) );
+            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 1.5f*Time.deltaTime);
             OrientToPlayer(playerPosition);
         }
         else
