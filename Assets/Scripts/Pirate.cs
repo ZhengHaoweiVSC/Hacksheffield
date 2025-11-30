@@ -19,17 +19,16 @@ public class Pirate : MonoBehaviour
         Vector2 playerPosition = playerObject.transform.position;
         float distanceToPlayer = getDistanceToPlayer(playerPosition);
 
-        if (distanceToPlayer > 3f)
+        if (distanceToPlayer > 1f)
         {
-            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 2f*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, playerPosition, 0.8f*Time.deltaTime*(1 + (Time.time)) );
             OrientToPlayer(playerPosition);
         }
-
-        // If distance to player is low enough, then player dies :(
-        if (distanceToPlayer <= 3f)
+        else
         {
-            
+            Debug.Log("Game Over");
         }
+
     }
 
     private float getDistanceToPlayer(Vector2 playerPos)
