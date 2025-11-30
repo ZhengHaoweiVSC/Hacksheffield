@@ -1,17 +1,25 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PlayerScript : MonoBehaviour
 {
-    public int maxPlayerHealth = 3;
+    private int maxPlayerHealth = 3;
     private int currentPlayerHealth;
+    public Canvas HUD;
+    private GameObject[] heartsArray;
 
     private void Start()
     {
         currentPlayerHealth = 3;
 
-        // Initialise Hearts
-        
+        heartsArray = new GameObject[]
+        {
+            HUD.transform.GetChild(0).gameObject,
+            HUD.transform.GetChild(1).gameObject,
+            HUD.transform.GetChild(2).gameObject,
+        };
     }
 
     private void Update()
@@ -31,6 +39,8 @@ public class PlayerScript : MonoBehaviour
     public void GetAttacked()
     {
         currentPlayerHealth -= 1;
+        Destroy(heartsArray[currentPlayerHealth]);
+        heartsArray[currentPlayerHealth] = null;
     }
 
     private void Die()
