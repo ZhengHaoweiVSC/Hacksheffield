@@ -9,6 +9,9 @@ public class PlayerScript : MonoBehaviour
     private void Start()
     {
         currentPlayerHealth = 3;
+
+        // Initialise Hearts
+        
     }
 
     private void Update()
