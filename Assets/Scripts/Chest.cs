@@ -9,6 +9,7 @@ public class Chest : MonoBehaviour
     private int goldAmount;
     private float timeToLive;
     private bool isCollected;
+    private GameObject playerObject;
 
     public Sprite closedChestSprite;
     public Sprite openedChestSprite;
@@ -22,6 +23,7 @@ public class Chest : MonoBehaviour
         goldAmount = Random.Range(1, 10);
         timeToLive = Time.time + 20.0f;
         isCollected = false;
+        playerObject = GameObject.FindGameObjectWithTag("Player");
 
         spriteRenderer.sprite = closedChestSprite;
     }
@@ -45,6 +47,13 @@ public class Chest : MonoBehaviour
         
         spriteRenderer.sprite = openedChestSprite;
         chestScript.UpdateGold(goldAmount);
+
+        // Trigger upgrade
+        PlayerStats stats = playerObject.GetComponent<PlayerStats>();
+        if (stats != null)
+     {
+        UpgradeUI.Instance.Open(stats);
+    }
     }
 
     public float GetDistanceToPlayer()
