@@ -3,17 +3,28 @@ using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using System.Threading;
+using System.Collections;
+
 
 public class Pirate : MonoBehaviour 
 {
     private Vector2 piratePosition;
     GameObject playerObject;
     private float timeSinceLastAttack;
+    public Sprite shipSprite;
+    public Sprite boom1Sprite;
+    public Sprite boom2Sprite;
+    public Sprite boom3Sprite;
+
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
+        spriteRenderer = gameObject.transform.GetChild(0).GetComponent<SpriteRenderer>();
         playerObject = GameObject.FindGameObjectWithTag("Player");
         timeSinceLastAttack = Time.time;
+        spriteRenderer.sprite = shipSprite;
     }
 
     private void Update()
@@ -29,9 +40,21 @@ public class Pirate : MonoBehaviour
         else
         {
             playerObject.GetComponent<PlayerScript>().GetAttacked();
+            spriteRenderer.sprite = boom1Sprite;
+
+            
+            spriteRenderer.sprite = boom2Sprite;
+            time(1);
+            spriteRenderer.sprite = boom3Sprite;
+            time(1);
             Destroy(gameObject);
         }
 
+    }
+
+    IEnumerator time(float t)
+    {
+        yield return new WaitForSeconds(t);
     }
 
     private float getDistanceToPlayer(Vector2 playerPos)

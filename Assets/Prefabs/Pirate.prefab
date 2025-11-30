@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4289507714364939696}
   - component: {fileID: 5865584839010171544}
   - component: {fileID: 8014404500948211673}
+  - component: {fileID: 7816887708107002237}
   m_Layer: 0
   m_Name: Pirate
   m_TagString: Enemy
@@ -46,6 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26cbc0add06d39247b5f6d20c8224977, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pirate
+  shipSprite: {fileID: -3600806161964122895, guid: 258e6ccd64a09e543a2645143f7aabe6, type: 3}
+  boom1Sprite: {fileID: -6199642483750245169, guid: 9bb2e95d46aa1c646a35bb8f4d11d642, type: 3}
+  boom2Sprite: {fileID: 5986030973748356752, guid: 239ad966e2055664a892f40afd8fdd5b, type: 3}
+  boom3Sprite: {fileID: 2828077047651648745, guid: 19718b7fb70a75f4cb068cd57a4bcaa9, type: 3}
 --- !u!61 &8014404500948211673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -92,6 +97,28 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 2.5, y: 4.5}
   m_EdgeRadius: 0
+--- !u!95 &7816887708107002237
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2467254543862544047}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a2a0dd2068813cb43acaf96ace5663fc, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &8736316997914445839
 GameObject:
   m_ObjectHideFlags: 0
