@@ -32,7 +32,6 @@ public class PlayerScript : MonoBehaviour
 
     private void Die()
     {
-        Time.timeScale = 0f;
         SceneManager.LoadScene("GameOverScreen");
     }
 }
