@@ -3,6 +3,8 @@ using UnityEngine;
 public class UpgradeUI : MonoBehaviour
 {
     public static UpgradeUI Instance;
+    public GameObject panel;
+
     private PlayerStats currentPlayer;
 
     private void Awake()
@@ -14,13 +16,13 @@ public class UpgradeUI : MonoBehaviour
     {
         currentPlayer = player;
 
-        gameObject.SetActive(true);
-        Time.timeScale = 0f;  
+        panel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void Close()
     {
-        gameObject.SetActive(false);
+        panel.SetActive(false);
         Time.timeScale = 1f;
     }
 
