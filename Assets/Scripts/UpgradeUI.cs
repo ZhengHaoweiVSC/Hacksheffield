@@ -47,16 +47,15 @@ public class UpgradeUI : MonoBehaviour
             UpgradeType.MoveSpeed,
             UpgradeType.ProjectileSpeed,
             UpgradeType.Cooldown,
-
             UpgradeType.Barrier,
             UpgradeType.DoubleShot,
             UpgradeType.RandomizeStats,
             UpgradeType.BigCannon
         };
 
-        // Remove hidden NPC detector if already used
-        if (!currentPlayer.hasHiddenNpcDetector)
-            available.Add(UpgradeType.HiddenNPC);
+        // Include LuckyFind (previously Hidden NPC) if player hasn't unlocked it
+        if (!currentPlayer.hasLuckyFind)
+            available.Add(UpgradeType.LuckyFind);
 
         // Shuffle list
         for (int i = 0; i < available.Count; i++)
@@ -70,7 +69,7 @@ public class UpgradeUI : MonoBehaviour
         for (int i = 0; i < 3; i++)
             chosen[i] = available[i];
 
-        // Randomize button placement
+        // Randomize button slots
         List<int> slotIndices = new List<int>() { 0, 1, 2 };
         for (int i = 0; i < slotIndices.Count; i++)
         {
@@ -78,13 +77,31 @@ public class UpgradeUI : MonoBehaviour
             (slotIndices[i], slotIndices[rand]) = (slotIndices[rand], slotIndices[i]);
         }
 
-        // Assign upgrades to random button slots
+        // Assign upgrades to buttons with safe display names
         for (int i = 0; i < 3; i++)
         {
             int slot = slotIndices[i];
-
-            optionLabels[slot].text = chosen[i].ToString();
+            optionLabels[slot].text = UpgradeToDisplayName(chosen[i]);
             AssignButtonAction(optionButtons[slot], chosen[i]);
+        }
+    }
+
+    // -------------------------------------------------------------------
+    //     MAP ENUM TO SAFE DISPLAY STRING
+    // -------------------------------------------------------------------
+    private string UpgradeToDisplayName(UpgradeType type)
+    {
+        switch (type)
+        {
+            case UpgradeType.MoveSpeed: return "Move Speed";
+            case UpgradeType.ProjectileSpeed: return "Projectile Speed";
+            case UpgradeType.Cooldown: return "Cooldown";
+            case UpgradeType.Barrier: return "Barrier";
+            case UpgradeType.DoubleShot: return "Double Shot";
+            case UpgradeType.LuckyFind: return "Lucky Find";
+            case UpgradeType.RandomizeStats: return "Randomize Stats";
+            case UpgradeType.BigCannon: return "Big Cannon";
+            default: return "Unknown";
         }
     }
 
@@ -94,7 +111,6 @@ public class UpgradeUI : MonoBehaviour
     private void AssignButtonAction(Button btn, UpgradeType upgrade)
     {
         btn.onClick.RemoveAllListeners();
-
         btn.onClick.AddListener(() =>
         {
             ApplyUpgrade(upgrade);
@@ -115,7 +131,7 @@ public class UpgradeUI : MonoBehaviour
 
             case UpgradeType.Barrier: currentPlayer.ActivateBarrier(); break;
             case UpgradeType.DoubleShot: currentPlayer.EnableDoubleShot(); break;
-            case UpgradeType.HiddenNPC: currentPlayer.UnlockNpcDetector(); break;
+            case UpgradeType.LuckyFind: currentPlayer.UnlockLuckyFind(); break;
             case UpgradeType.RandomizeStats: currentPlayer.RandomizeStats(); break;
             case UpgradeType.BigCannon: currentPlayer.UpgradeBigCannon(); break;
         }
@@ -130,10 +146,9 @@ public enum UpgradeType
     MoveSpeed,
     ProjectileSpeed,
     Cooldown,
-
     Barrier,
     DoubleShot,
-    HiddenNPC,
+    LuckyFind,       // renamed from HiddenNPC
     RandomizeStats,
     BigCannon
 }
