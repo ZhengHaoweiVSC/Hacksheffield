@@ -454,12 +454,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dab7610c7d24f47ceaaf28f470b1412e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
-  moveSpeed: 6
-  moveSpeedIncreaseAmount: 1.5
+  moveSpeed: 4
+  moveSpeedIncreaseAmount: 4
   projectileSpeed: 15
   cooldown: 1.2
-  projectileSpeedIncrease: 3
-  cooldownReduction: 0.1
+  projectileSpeedIncrease: 10
+  cooldownReduction: 0.2
   projectileLifetime: 2
 --- !u!1 &399060052
 GameObject:
