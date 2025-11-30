@@ -8,10 +8,12 @@ public class Pirate : MonoBehaviour
 {
     private Vector2 piratePosition;
     GameObject playerObject;
+    private float timeSinceLastAttack;
 
     private void Start()
     {
         playerObject = GameObject.FindGameObjectWithTag("Player");
+        timeSinceLastAttack = Time.time;
     }
 
     private void Update()
@@ -19,14 +21,15 @@ public class Pirate : MonoBehaviour
         Vector2 playerPosition = playerObject.transform.position;
         float distanceToPlayer = getDistanceToPlayer(playerPosition);
 
-        if (distanceToPlayer > 1f)
+        if (distanceToPlayer > 2.5f)
         {
             transform.position = Vector3.MoveTowards(transform.position, playerPosition, 0.8f*Time.deltaTime*(1 + (Time.time)) );
             OrientToPlayer(playerPosition);
         }
         else
         {
-            Debug.Log("Game Over");
+            playerObject.GetComponent<PlayerScript>().GetAttacked();
+            Destroy(gameObject);
         }
 
     }
